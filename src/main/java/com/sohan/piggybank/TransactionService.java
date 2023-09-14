@@ -16,7 +16,6 @@ public class TransactionService {
         this.userRepository = userRepository;
         this.userTransactionRepository = userTransactionRepository;
     }
-
     public User createPiggyBankUser(User user){
         User user1 = new User();
         user1.setUserId(RandomID.randomId());
@@ -26,14 +25,12 @@ public class TransactionService {
         user1.setBroken(true);
         return userRepository.save(user1);
     }
-
     public List getAllUser(){
         return userRepository.findAll();
     }
     public Optional<User> getUser(Long id){
         return userRepository.findById(id);
     }
-
     public String addMoney(Long id, double amount) throws ChangeSetPersister.NotFoundException {
         User user = null;
         if(userRepository.existsById(id)){
@@ -46,7 +43,6 @@ public class TransactionService {
                 return "Piggy Bank is Already created";
             }
 
-
             LocalDateTime localDateTime = LocalDateTime.now();
             UserTransactions userTransactions = new UserTransactions();
             userTransactions.setUserTransactionId(RandomID.randomTransactionId());
@@ -58,12 +54,10 @@ public class TransactionService {
         }
         return "Something Went Wrong";
     }
-
     public double getPiggyBankBalance(Long id) throws ChangeSetPersister.NotFoundException {
         User user = userRepository.findUserByUserId(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
         return user.getBalance();
     }
-
 
     public String breakPiggyBank(Long id)  {
         User user = null;

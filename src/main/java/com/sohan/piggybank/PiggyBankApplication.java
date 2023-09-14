@@ -8,7 +8,6 @@ public class PiggyBankApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PiggyBankApplication.class, args);
-
 	}
 
 }
